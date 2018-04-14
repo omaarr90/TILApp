@@ -26,13 +26,8 @@ public func configure(
 
     // Configure a SQLite database
     let sqlite: SQLiteDatabase
-    if env.isRelease {
-        /// Create file-based SQLite db using $SQLITE_PATH from process env
-        sqlite = try SQLiteDatabase(storage: .file(path: Environment.get("SQLITE_PATH")!))
-    } else {
-        /// Create an in-memory SQLite database
-        sqlite = try SQLiteDatabase(storage: .memory)
-    }
+    /// Create an in-memory SQLite database
+    sqlite = try SQLiteDatabase(storage: .memory)
 
     /// Register the configured SQLite database to the database config.
     var databases = DatabaseConfig()
